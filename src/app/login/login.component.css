@@ -1,0 +1,9 @@
+.center {
+    margin: auto;
+    margin-top: 10%;
+    width: 40%;
+    border: 3px solid black;
+    border-radius: 0.5em;
+    padding: 10px;
+    box-shadow: 10px 10px gainsboro;
+  }

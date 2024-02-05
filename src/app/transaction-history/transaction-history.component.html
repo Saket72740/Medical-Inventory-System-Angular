@@ -1,0 +1,35 @@
+<br>
+<br>
+<br>
+<div class="mx-3">
+    <input class="form-group" type="text" placeholder="Enter Customer Name" [(ngModel)] = searchName>&nbsp;
+    <input class="form-group" type="number"  placeholder="Enter Customer Mobile Number" [(ngModel)] = searchMobile>&nbsp;
+    <button class="btn btn-primary" (click)="search()">Search</button>
+    <br>
+    <div class="row" *ngIf=" flag; else elseBlock">
+        <div class="col-sm-4">
+            <div class="card my-3" style="border-color:blue" *ngFor="let filteredUser of filteredcustomer">
+                <div class="card-body">
+                    <h4 class="card-title">{{ filteredUser.name }}</h4>
+                    <p>{{ filteredUser.mobile_no }}</p>
+                    <p>{{ filteredUser.dateOfBought | date: 'fullDate'}}</p>
+                    <a [routerLink]="['customerSearch', filteredUser.id, filteredUser.mobile_no, filteredUser.name]">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #elseBlock>
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let customer of customerList">
+                <div class="card my-3" style="border-color:blue">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ customer.name }}</h4>
+                        <p>{{ customer.mobile_no }}</p>
+                        <p>{{ customer.dateOfBought | date: 'fullDate'}}</p>
+                        <a [routerLink]="['customerSearch', customer.id, customer.mobile_no, customer.name]">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

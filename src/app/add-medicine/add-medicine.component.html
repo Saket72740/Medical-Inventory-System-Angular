@@ -1,0 +1,47 @@
+<br>
+<div class="container">
+    <br>
+    <h3 class="text-center">Add Medicine</h3>
+    <br>
+    <form #addMedicineForm = "ngForm" (ngSubmit)="addMeds()">
+        <div class="form-group">
+            <label for="med_id">Medicine ID</label>
+            <input type="text" class="form-control" id="med_id" aria-describedby="idHelp" placeholder="Enter Medicine ID"
+                 name="addedMedicine.med_id" [(ngModel)]="addedMedicine.med_id" #name="ngModel" required minlength="5" maxlength="5">
+            <small *ngIf="addedMedicine.med_id == '' || addedMedicine.med_id == undefined" id="idHelp" style="color: red;">*Please Enter Medicine ID of 5 characters word.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="med_name">Medicine Name</label>
+            <input type="text" class="form-control" id="med_name" aria-describedby="nameHelp" placeholder="Enter Medicine Name"
+                 name="addedMedicine.med_name" [(ngModel)]="addedMedicine.med_name" #name="ngModel" required minlength="2">
+            <small *ngIf="addedMedicine.med_name == '' || addedMedicine.med_name == undefined" id="nameHelp" style="color: red;">*Please Enter Medicine Name of atleast 2 characters.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="med_composition">Medicine Composition</label>
+            <input type="text" class="form-control" id="med_composition" aria-describedby="compositionHelp" 
+                placeholder="Enter Medicine Composition" name="addedMedicine.med_composition" [(ngModel)]="addedMedicine.med_composition" #name="ngModel" required minlength="2">
+            <small *ngIf="addedMedicine.med_composition == '' || addedMedicine.med_composition == undefined || addedMedicine.med_composition.length < 2" id="compositionHelp" style="color: red;">*Please Enter Medicine Composition of atleast 2 chsracters</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="med_quantity">Medicine Quantity</label>
+            <input type="number" class="form-control" id="med_quantity" aria-describedby="quantityHelp" 
+                placeholder="Enter Medicine Quantity" name="addedMedicine.med_quantity" [(ngModel)]="addedMedicine.med_quantity" #name="ngModel" required min="1">
+            <small *ngIf="addedMedicine.med_quantity <= 0" id="quanityHelp" style="color: red;">*Please Enter Medicine Quantity greater than 0.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="med_price">Medicine Price</label>
+            <input type="number" class="form-control" id="med_price" aria-describedby="priceHelp" 
+                placeholder="Enter Medicine Price" name="addedMedicine.med_price" [(ngModel)]="addedMedicine.med_price" #name="ngModel" required min="1">
+            <small *ngIf="addedMedicine.med_price <= 0" id="priceHelp" style="color: red;">*Please Enter Medicine Price greater than 0.</small>
+        </div>
+        <br>
+        <div class="text-center">
+            <button class="btn btn-primary " type="submit" [disabled]="!addMedicineForm.valid">Add</button>
+        </div>
+        <br>
+    </form>
+</div>

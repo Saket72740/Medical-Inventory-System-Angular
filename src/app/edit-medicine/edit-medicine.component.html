@@ -1,0 +1,18 @@
+<br>
+<br>
+<br>
+<div class="container">
+    <h3>Edit Medicine</h3>
+    <br>
+    <p><b>Medicine ID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:</b> {{selectedMedicine.med_id}}</p>
+    <p><b>Medicine Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; : </b><input [(ngModel)]="selectedMedicine.med_name"></p>
+    <small *ngIf="selectedMedicine.med_name == null || selectedMedicine.med_name == ''" style="color: red;">*Please Enter Medicine Name</small>
+    <p><b>Medicine Composition&nbsp; : </b><input [(ngModel)]="selectedMedicine.med_composition"></p>
+    <small *ngIf="selectedMedicine.med_composition == null || selectedMedicine.med_composition == ''" style="color: red;">*Please Enter Medicine Composition</small>
+    <p><b>Medicine Quantity &nbsp; &nbsp; &nbsp; &nbsp;    : </b><input [(ngModel)]="selectedMedicine.med_quantity"></p>
+    <small *ngIf="selectedMedicine.med_quantity == 0" style="color: red;">*Please Enter Medicine Quantity</small>
+    <p><b>Medicine Price &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : </b><input [(ngModel)]="selectedMedicine.med_price"></p>
+    <small *ngIf="selectedMedicine.med_price == 0" style="color: red;">*Please Enter Medicine Price</small><br>
+    <button class="btn btn-success" (click)="update()">Update</button>
+
+</div>

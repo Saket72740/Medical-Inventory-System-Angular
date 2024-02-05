@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+<div class="container-fluid" *ngIf="flag ; else elseBlock">
+    <table class="table">
+        <thead class="table-primary">
+            <tr>
+                <td><b>Medicine Id</b></td>
+                <td><b>Medicine Name</b></td>
+                <td><b>Medicine Composition</b></td>
+                <td><b>Medicine Quantity</b></td>
+                <td><b>Medicine Price</b></td>
+                <td><input class="form-control" type="text" placeholder="Search" name="searchMedicine" [(ngModel)]="searchMedicine" #name="ngModel"></td>
+                <td><button class="btn btn-secondary" (click)="search()">Search</button></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medicine of medicinesList">
+                <td>{{ medicine.med_id }}</td>
+                <td>{{ medicine.med_name }}</td>
+                <td>{{ medicine.med_composition}}</td>
+                <td>{{ medicine.med_quantity }}</td>
+                <td>{{ medicine.med_price | currency: 'INR'}}</td>
+                <td><button class="btn btn-success"  [routerLink]="['editMedicine',medicine.med_id]" [disabled]="!authenticationService.isLoggedIn()">Edit</button></td>
+                <td><button class="btn btn-danger" (click)="delete(medicine)" [disabled]="!authenticationService.isLoggedIn()">Delete</button></td>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+<ng-template #elseBlock><app-search [searchedMedicines]="filteredMedicines"></app-search></ng-template>

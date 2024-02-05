@@ -1,0 +1,63 @@
+<br>
+<br>
+<br>
+<div class="container">
+    <h3>Customer Billing</h3>
+    <form #customerForm = "ngForm" (ngSubmit)="putMedicineAndCustomer()">
+        <div class="form-group ">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" aria-describedby="nameHelp" placeholder="Enter Customer Name" name="customer.name" [(ngModel)]="customer.name" #name="ngModel" required minlength="2">
+            <small *ngIf="customer.name == undefined || customer.name == '' || customer.name.length < 2" id="nameHelp" style="color: red;">*Please Enter Customer Name of atleast 2 character</small>
+        </div>
+        <div class="form-group ">
+            <label for="customerMobile">Customer Mobile Number</label>
+            <input type="number" class="form-control" id="customerMobile" aria-describedby="mobileHelp" placeholder="Enter Customer Mobile Number" name="customer.mobile_no" [(ngModel)]="customer.mobile_no" #name="ngModel" required max="9999999999">
+            <small *ngIf="customer.mobile_no == undefined || customer.mobile_no/1000000000 < 1 || customer.mobile_no/1000000000 >= 10" id="mobileHelp" style="color: red;">*Please Enter 10 Valid digit Customer Mobile No.</small>
+        </div>
+        <div class="form-group ">
+            <label for="customerEmail">Customer Email ID</label>
+            <input type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp" name="customer.email" [(ngModel)]="customer.email" #name="ngModel" placeholder="Enter Customer Email ID">
+        </div>
+        <div class="form-group ">
+            <label for="customerAddress">Customer Address</label>
+            <input type="text" class="form-control" id="customerAddress" aria-describedby="addressHelp" name="customer.address" [(ngModel)]="customer.address" #name="ngModel" placeholder="Enter Customer Address" required minlength="5">
+            <small *ngIf="customer.address == undefined || customer.address == '' || customer.address.length < 5" id="addressHelp" style="color: red;">*Please Enter Valid atleast 5 character Customer Address</small>
+        </div>
+        <br>
+        <!-- <button class="btn btn-primary" type="button" (click)="showForm()">Add Medicine Detail</button> -->
+        <form (ngSubmit)="addMedicine()">
+            <!-- <input type="text" placeholder="Medicine Name" name="medicine.med_name" [(ngModel)]="medicine.med_name" #name="ngModel" (input)="getQuantity()"> &nbsp; &nbsp; -->
+            <select (change)="updateMed_name($event)">
+                <option value="default"> ---- </option>
+                <option *ngFor="let medicine of medicineList" [value]="medicine.med_name">
+                    {{medicine.med_name}}
+                </option>
+            </select>&nbsp;&nbsp;
+
+            <input type="number" placeholder="Medicine Quantity" name="medicine.med_quantity" [(ngModel)]="medicine.med_quantity" #name="ngModel"> &nbsp; &nbsp;
+            <button class="btn btn-success" type="submit">Add</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Medicine Quantity</th>
+                    <th>Medicine Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicine of addedmedicineList">
+                    <td>{{medicine.med_name}}</td>
+                    <td>{{medicine.med_quantity}}</td>
+                    <td>{{medicine.med_price}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteMedicine(medicine)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <p><b>Total Price: </b> {{totalPrice | currency: 'INR'}}</p>
+        <button class="btn btn-success" type="submit" [disabled]="!customerForm.valid">Submit</button>
+    </form>
+</div>

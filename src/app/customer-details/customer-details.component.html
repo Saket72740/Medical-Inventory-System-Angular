@@ -1,0 +1,35 @@
+<div class="col-6 center">
+    <div class="card my-3" style="border-color:blue">
+        <div class="card-body">
+            <h3 style="color: blue;">SK Medicine Shop</h3>
+            <h4 class="card-title"><b>Name: </b>{{ customer.name }}</h4>
+            <p><b>Mobile Number: </b>{{ customer.mobile_no }}</p>
+            <p><b>Email: </b>{{ customer.email }}</p>
+            <p><b>Address: </b>{{ customer.address }}</p>
+            <p><b>Date: </b>{{ customer.dateOfBought | date: "dd/MM/yyyy" }}</p>
+            <p><b>Time: </b>{{ customer.dateOfBought | date: "hh:mm:ss  a" }}</p>
+            <p><b>Amount Paid: </b>{{ customer.amountPaid | currency:'INR' }}</p>
+            <p><b>Medicine Bought: </b></p>
+            <table class="table">
+                <thead >
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Composition</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medicine of customer.medicines">
+                        <td>{{medicine.med_id}}</td>
+                        <td>{{medicine.med_name}}</td>
+                        <td>{{medicine.med_composition}}</td>
+                        <td>{{medicine.med_quantity}}</td>
+                        <td>{{medicine.med_price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
